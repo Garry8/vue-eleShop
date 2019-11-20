@@ -18,11 +18,9 @@
           <div class="testGet">
             <el-form
               :model="ruleForm"
-              status-icon
               :rules="rules"
               ref="ruleForm"
               label-width="50px"
-              class="demo-ruleForm"
             >
               <div @mouseenter="enter">
                 <svg class="icon usico" aria-hidden="true" v-show="manone">
@@ -33,21 +31,16 @@
                 </svg>
               </div>
               <el-form-item prop="username">
-                <el-input
-                  type="username"
-                  v-model="ruleForm.username"
-                  autocomplete="off"
-                  placeholder="请填写账号"
-                ></el-input>
+                <el-input type="username" v-model="ruleForm.username" placeholder="请填写账号"></el-input>
               </el-form-item>
 
               <svg class="icon usico" aria-hidden="true">
                 <use xlink:href="#icon-lvcheng" />
               </svg>
-              <el-form-item prop="pass">
+              <el-form-item prop="password">
                 <el-input
                   type="password"
-                  v-model="ruleForm.pass"
+                  v-model="ruleForm.password"
                   autocomplete="off"
                   placeholder="请填写密码"
                 ></el-input>
@@ -70,32 +63,23 @@
 <script>
 export default {
   data () {
-    var validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入密码'))
-      } else {
-        callback()
-      }
-    }
-
-    var validatePass2 = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入账号'))
-      } else {
-        callback()
-      }
-    }
     return {
       manone: true,
       womanone: false,
       isSee: false,
       ruleForm: {
         username: '',
-        pass: ''
+        password: ''
       },
       rules: {
-        pass: [{ validator: validatePass, trigger: 'blur' }],
-        username: [{ validator: validatePass2, trigger: 'blur' }]
+        username: [
+          { required: true, message: '请输入账户', trigger: 'blur' },
+          { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
+        ]
       }
     }
   },
@@ -143,7 +127,7 @@ export default {
   background: url("../assets/img/bgc-1.png");
   height: 100%;
   width: 100%;
-  box-sizing:content-box;
+  box-sizing: content-box;
   // position: relative;
 
   .bgc {
@@ -190,7 +174,7 @@ export default {
   .testRight {
     .testGet {
       width: 450px;
-      margin:20px 40px 40px 20px;
+      margin: 20px 40px 40px 20px;
       padding: 20px;
     }
 

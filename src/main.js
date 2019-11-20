@@ -6,9 +6,15 @@ import './plugins/element.js'
 // 导入全局样式表
 import './assets/css/globe.css'
 
-// 引入阿里图标
+// 引入用到的阿里图标
 import './assets/aliicon/font_lizi/iconfont.js'
 import './assets/aliicon/font_ren/iconfont.js'
+
+// 导入axios
+import axios from 'axios'
+Vue.prototype.$http = axios
+// 填写根路径
+axios.defaults.baseURL = ''
 
 Vue.config.productionTip = false
 
