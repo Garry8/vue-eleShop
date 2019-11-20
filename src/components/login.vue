@@ -50,9 +50,12 @@
               </el-form-item>
 
               <el-form-item>
-                <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-
+                <el-button class="rigBut" type="text" @click="resetForm('ruleForm')">重置</el-button>
               </el-form-item>
+              <el-form-item>
+                <el-button class="putget" type="primary" @click="submitForm('ruleForm')">提交</el-button>
+              </el-form-item>
+
             </el-form>
           </div>
         </div>
@@ -80,7 +83,6 @@ export default {
       }
     }
     return {
-
       ruleForm: {
         username: '',
         pass: ''
@@ -165,6 +167,13 @@ export default {
     .testGet {
       width: 400px;
       margin: 10px;
+    }
+
+  .rigBut{
+
+  }
+    .putget{
+      width: 100%;
     }
   }
 
