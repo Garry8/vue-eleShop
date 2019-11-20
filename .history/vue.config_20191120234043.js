@@ -1,4 +1,4 @@
-// vue.config.js
+//vue.config.js
 module.exports = {
   chainWebpack: config => {
     config.module
@@ -8,6 +8,6 @@ module.exports = {
       .tap(options => {
         options.fix = true
         return options
-      })
+      });
   }
-}
+};

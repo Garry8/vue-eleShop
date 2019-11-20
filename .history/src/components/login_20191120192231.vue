@@ -14,12 +14,7 @@
       </div>
 
       <transition appear name="pone">
-        <div
-          class="testRight"
-          :class="{ bgc: isSee }"
-          @mouseenter="backbgc"
-          @mouseleave="backgone"
-        >
+        <div class="testRight" :class="{bgc:isSee}" @mouseenter="backbgc" @mouseleave="backgone">
           <div class="testGet">
             <el-form
               :model="ruleForm"
@@ -36,11 +31,7 @@
                 </svg>
               </div>
               <el-form-item prop="username">
-                <el-input
-                  type="username"
-                  v-model="ruleForm.username"
-                  placeholder="请填写账号"
-                ></el-input>
+                <el-input type="username" v-model="ruleForm.username" placeholder="请填写账号"></el-input>
               </el-form-item>
 
               <svg class="icon usico" aria-hidden="true">
@@ -56,20 +47,10 @@
               </el-form-item>
 
               <el-form-item>
-                <el-button
-                  class="rigBut"
-                  type="text"
-                  @click="resetForm('ruleForm')"
-                  >重置输入</el-button
-                >
+                <el-button class="rigBut" type="text" @click="resetForm('ruleForm')">重置输入</el-button>
               </el-form-item>
               <el-form-item>
-                <el-button
-                  class="putget"
-                  type="primary"
-                  @click="submitForm('ruleForm')"
-                  >提交</el-button
-                >
+                <el-button class="putget" type="primary" @click="submitForm('ruleForm')">提交</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -81,7 +62,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       manone: true,
       womanone: false,
@@ -103,17 +84,17 @@ export default {
     }
   },
   methods: {
-    backbgc() {
+    backbgc () {
       this.isSee = !this.isSee
     },
-    backgone() {
+    backgone () {
       this.isSee = !this.isSee
     },
-    enter() {
+    enter () {
       this.manone = !this.manone
       this.womanone = !this.womanone
     },
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           alert('submit!')
@@ -123,7 +104,7 @@ export default {
         }
       })
     },
-    resetForm(formName) {
+    resetForm (formName) {
       this.$refs[formName].resetFields()
     }
   }

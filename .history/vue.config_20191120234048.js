@@ -8,6 +8,6 @@ module.exports = {
       .tap(options => {
         options.fix = true
         return options
-      })
+      });
   }
-}
+};
