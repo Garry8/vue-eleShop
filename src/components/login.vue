@@ -6,7 +6,7 @@
           <p class="pone">欢迎您</p>
         </transition>
         <transition appear name="ptwo">
-          <p class="ptwo">使用智能云系统后台管理系统</p>
+          <p class="ptwo">使用智能云平台后台管理系统</p>
         </transition>
         <transition appear name="divone">
           <div class="boLine"></div>
