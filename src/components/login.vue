@@ -141,8 +141,9 @@ export default {
 .logCon {
   // background-color: #f1f1f1;
   background: url("../assets/img/bgc-1.png");
-  box-sizing: border-box;
   height: 100%;
+  width: 100%;
+  box-sizing:content-box;
   // position: relative;
 
   .bgc {
@@ -156,7 +157,7 @@ export default {
     position: absolute;
   }
   .testMain {
-    width: 70%;
+    width: 66%;
     display: flex;
     margin: 0 auto;
     padding-top: 12%;
@@ -182,7 +183,7 @@ export default {
       height: 6px;
       border-radius: 10px;
       background-color: #333;
-      margin-top: 22%;
+      margin-top: 26%;
     }
   }
 
