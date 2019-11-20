@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "8987930",
+      "name": "旅程",
+      "font_class": "lvcheng",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    }
+  ]
+}

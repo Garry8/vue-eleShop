@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="lvcheng" unicode="&#58945;" d="M102.4 896h819.2a102.4 102.4 0 0 0 102.4-102.4v-716.8H0V793.6A102.4 102.4 0 0 0 102.4 896zM522.24 896h30.72L0 271.36v30.72zM1024 691.2s-435.46624 78.70464-450.56-307.2c0 0-3.13344-386.9184 450.56-307.2V691.2zM0 138.24h1024v-163.84a102.4 102.4 0 0 0-102.4-102.4H102.4A102.4 102.4 0 0 0 0-25.6V138.24zM0 353.28s319.77472 124.69248 583.68-174.08a557.4144 557.4144 0 0 0 440.32 61.44v-102.4H0V353.28zM286.72 896h194.56L0 353.28V578.56z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>
