@@ -114,12 +114,18 @@ export default {
       this.womanone = !this.womanone
     },
     submitForm(formName) {
-      this.$refs[formName].validate(valid => {
+      this.$refs[formName].validate(async valid => {
         if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
+          //发起请求,await后面的一串代码返回的是一个promise,就用await解析,前面定义的是只拿data属性,并用res记录
+          // async是await的环境,用来修饰异步方法
+          const { data: res } = await this.$http.post('https://api.apiopen.top/getJoke?page=1&count=2&type=video', this.ruleForm)
+          if (res.status !== 200) {
+            return this.$message.error('登陆失败')
+          } else {
+            this.$message.success('登陆成功')
+            window.sessionStorage.setItem('token',res.token)
+            this.$router.push('/home')
+          }
         }
       })
     },
