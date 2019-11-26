@@ -52,6 +52,7 @@
                   v-model="ruleForm.password"
                   autocomplete="off"
                   placeholder="请填写密码"
+                  @keyup.enter.native="submitForm()"
                 ></el-input>
               </el-form-item>
 
@@ -64,10 +65,7 @@
                 >
               </el-form-item>
               <el-form-item>
-                <el-button
-                  class="putget"
-                  type="primary"
-                  @click="submitForm('ruleForm')"
+                <el-button class="putget" type="primary" @click="submitForm()"
                   >提交</el-button
                 >
               </el-form-item>
@@ -83,6 +81,7 @@
 export default {
   data() {
     return {
+      userList: '',
       manone: true,
       womanone: false,
       isSee: false,
@@ -102,6 +101,9 @@ export default {
       }
     }
   },
+  mounted() {
+    this.getUserList()
+  },
   methods: {
     backbgc() {
       this.isSee = !this.isSee
@@ -113,21 +115,47 @@ export default {
       this.manone = !this.manone
       this.womanone = !this.womanone
     },
-    submitForm(formName) {
-      this.$refs[formName].validate(async valid => {
-        if (valid) {
-          //发起请求,await后面的一串代码返回的是一个promise,就用await解析,前面定义的是只拿data属性,并用res记录
-          // async是await的环境,用来修饰异步方法
-          const { data: res } = await this.$http.post('https://api.apiopen.top/getJoke?page=1&count=2&type=video', this.ruleForm)
-          if (res.status !== 200) {
-            return this.$message.error('登陆失败')
+    // submitForm(formName) {
+    //   this.$refs[formName].validate(async valid => {
+    //     if (valid) {
+    //       //发起请求,await后面的一串代码返回的是一个promise,就用await解析,前面定义的是只拿data属性,并用res记录
+    //       // async是await的环境,用来修饰异步方法
+    //       const { data: res } = await this.$http.post('https://api.apiopen.top/getJoke?page=1&count=2&type=video', this.ruleForm)
+    //       if (res.status !== 200) {
+    //         return this.$message.error('登陆失败')
+    //       } else {
+    //         this.$message.success('登陆成功')
+    //         window.sessionStorage.setItem('token',res.token)
+    //         this.$router.push('/home')
+    //       }
+    //     }
+    //   })
+    // },
+    getUserList() {
+      this.$http
+        .get('http://localhost:8080/eleVue/userServlet')
+        .then(result => {
+          if (result.status === 200) {
+            this.userList = result.data
           } else {
-            this.$message.success('登陆成功')
-            window.sessionStorage.setItem('token',res.token)
-            this.$router.push('/home')
+            return this.$message.error('获取数据失败')
           }
-        }
-      })
+          // eslint-disable-next-line no-unused-vars
+        })
+    },
+    submitForm() {
+      var name = this.ruleForm.username
+      var passward = this.ruleForm.password
+      if (
+        name == this.userList[0].username &&
+        passward == this.userList[0].passward
+      ) {
+        this.$message.success('登陆成功')
+        window.sessionStorage.setItem('tokeid', this.userList[0].tokeid)
+        this.$router.push('/home')
+      } else {
+        return this.$message.error('登陆失败')
+      }
     },
     resetForm(formName) {
       this.$refs[formName].resetFields()

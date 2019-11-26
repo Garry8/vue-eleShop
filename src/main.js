@@ -14,7 +14,10 @@ import './assets/aliicon/font_ren/iconfont.js'
 import axios from 'axios'
 Vue.prototype.$http = axios
 // 填写根路径
-axios.defaults.baseURL = ''
+// axios.defaults.baseURL = ''
+Object.defineProperty(Vue.prototype, '$http', {
+    value: axios
+})
 
 Vue.config.productionTip = false
 
