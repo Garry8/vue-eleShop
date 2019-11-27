@@ -1,0 +1,44 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11937079",
+      "name": "联系人",
+      "font_class": "lianxiren",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "11937089",
+      "name": "邮件",
+      "font_class": "youjian",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "11937090",
+      "name": "消息",
+      "font_class": "xiaoxi",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "11937092",
+      "name": "应用2",
+      "font_class": "yingyong",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "11937098",
+      "name": "草稿箱",
+      "font_class": "caogaoxiang",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    }
+  ]
+}

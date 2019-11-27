@@ -9,6 +9,7 @@ import './assets/css/globe.css'
 // 引入用到的阿里图标
 import './assets/aliicon/font_lizi/iconfont.js'
 import './assets/aliicon/font_ren/iconfont.js'
+import './assets/aliicon/font_main/iconfont.css'
 
 // 导入axios
 import axios from 'axios'
