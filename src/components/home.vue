@@ -5,7 +5,21 @@
       <div>
         <h2 class="tith">智能云管理平台</h2>
       </div>
-      <el-button type="danger" @click="exit" round>退出</el-button>
+
+      <div class="exitCls">
+        <el-button type="danger" class="exCut" @click="visible = !visible" round
+          >退出</el-button
+        >
+        <div class="showPale" v-show="visible">
+          <p>
+            确定退出吗？
+            <el-button size="mini" type="text" @click="visible = false"
+              >取消</el-button
+            >
+            <el-button type="danger" size="mini" @click="exit">确定</el-button>
+          </p>
+        </div>
+      </div>
     </el-header>
     <el-container>
       <!-- 左侧树 -->
@@ -69,6 +83,7 @@ export default {
       meauList: [],
       linList: [],
       pflag: false,
+      visible: false,
       acPath: '',
       iconmain: {
         '1': 'iconfont icon-lianxiren',
@@ -120,7 +135,7 @@ export default {
       this.linList.forEach(v => {
         map[v.submid].submain.push(v)
       })
-    //   console.log(this.meauList)
+      //   console.log(this.meauList)
     },
     toggPale() {
       this.pflag = !this.pflag
@@ -159,7 +174,7 @@ export default {
   cursor: pointer;
 }
 .el-aside {
-  background-color: #EAEAEA;
+  background-color: #eaeaea;
   .el-menu {
     border-right: 0;
   }
@@ -172,5 +187,27 @@ export default {
 }
 .el-submenu .el-menu-item span {
   padding-left: 12px;
+}
+.exitCls .el-popover .el-popper {
+  position: relative;
+  right: 0;
+  top: 0;
+}
+.exCut {
+  margin-right: 20px;
+}
+.showPale {
+  background-color: #fff;
+  width: 220px;
+  position: absolute;
+  right: 120px;
+  top: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
+  p {
+    font-size: 14px;
+    margin: 16px;
+  }
 }
 </style>
