@@ -6,6 +6,7 @@
         <h2 class="tith">智能云管理平台</h2>
       </div>
 
+    <!-- 退出按钮 -->
       <div class="exitCls">
         <el-button type="danger" class="exCut" @click="visible = !visible" round
           >退出</el-button

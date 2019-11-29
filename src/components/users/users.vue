@@ -32,6 +32,7 @@
             <el-table-column label="序号" width="60">
               <template slot-scope="scope">{{ scope.$index + 1 }}</template>
             </el-table-column>
+            <!-- <el-table-column label="序号" type="index" width="60"></el-table-column> -->
             <el-table-column label="用户名" prop="name"></el-table-column>
             <el-table-column label="电话" prop="phone"></el-table-column>
             <el-table-column label="邮箱" prop="email"></el-table-column>
@@ -49,7 +50,7 @@
                     type="primary"
                     icon="el-icon-edit"
                     circlefalse
-                    @click="editUser(scope.row, scope.$index)"
+                    @click="showEditdia(scope.row, scope.$index)"
                   ></el-button>
                 </el-tooltip>
 
@@ -76,7 +77,7 @@
       </el-row>
     </el-card>
 
-    <!-- 添加的弹出框 -->
+    <!-- 添加用户的弹出框 -->
     <el-dialog
       title="添加用户信息"
       :visible.sync="dialogVisible"
@@ -111,6 +112,42 @@
         <el-button type="primary" @click="addUser()">确 定</el-button>
       </span>
     </el-dialog>
+
+    <!-- 编辑用户的弹出框 -->
+    <el-dialog
+      title="编辑用户信息"
+      :visible.sync="editdialogVisible"
+      width="40%"
+      @close="clearEdit"
+    >
+      <el-form
+        :model="editForm"
+        :rules="editRules"
+        ref="editFormRef"
+        label-width="70px"
+      >
+        <el-form-item label="用户名">
+          <el-input
+            clearable
+            v-model="editForm.name"
+            :disabled="true"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="电话" prop="phone">
+          <el-input clearable v-model="editForm.phone"></el-input>
+        </el-form-item>
+        <el-form-item label="邮箱" prop="email">
+          <el-input clearable v-model="editForm.email"></el-input>
+        </el-form-item>
+        <el-form-item label="角色">
+          <el-input :disabled="true" placeholder="普通管理员"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="editdialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="editUser()">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -134,9 +171,11 @@ export default {
       callback(new Error('请输入正确的手机号码'))
     }
     return {
+      userIndex: null,
       queryInfo: [],
       keywords: '',
       dialogVisible: false,
+      editdialogVisible: false,
       ruleForm: {
         name: '',
         phone: '',
@@ -156,10 +195,21 @@ export default {
           { required: true, message: '请输入邮箱', trigger: 'blur' },
           { validator: checkEmail, trigger: 'blur' }
         ]
+      },
+      editForm: {},
+      editRules: {
+        phone: [
+          { required: true, message: '请输入电话', trigger: 'blur' },
+          { validator: checkPhone, trigger: 'blur' }
+        ],
+        email: [
+          { required: true, message: '请输入邮箱', trigger: 'blur' },
+          { validator: checkEmail, trigger: 'blur' }
+        ]
       }
     }
   },
-  mounted() {
+  created() {
     this.getMenu()
   },
   methods: {
@@ -192,18 +242,52 @@ export default {
         //  标准的逻辑是当填完所有信息后需要向后台发送post请求,然后在后台去处理相关代码储存到数据库中的逻辑
         // 下面是push到get请求的表中
         var newUser = {
-            'name': this.ruleForm.name,
-            'phone': this.ruleForm.phone,
-            'email': this.ruleForm.email,
-            'behavior':this.ruleForm.behavior,
-          }
+          name: this.ruleForm.name,
+          phone: this.ruleForm.phone,
+          email: this.ruleForm.email,
+          behavior: this.ruleForm.behavior
+        }
         this.queryInfo.push(newUser)
         this.dialogVisible = false
-        console.log(this.queryInfo)
-        
-
-        
       })
+    },
+    clearEdit() {
+      this.$refs.editFormRef.resetFields()
+    },
+    showEditdia(item, idx) {
+      // console.log(id)
+      this.userIndex = idx
+      this.editForm = {
+        id: item.id,
+        name: item.name,
+        phone: item.phone,
+        email: item.email,
+        behavior: '普通管理员'
+      }
+      this.editdialogVisible = !this.editdialogVisible
+    },
+    editUser() {
+      this.$refs.editFormRef.validate(valid => {
+        if (!valid) return
+        this.editdialogVisible = !this.editdialogVisible
+        // 注意本地应用就要创建一个不被销毁的数据
+        var succe = {
+          name: this.editForm.name,
+          phone: this.editForm.phone,
+          email: this.editForm.email,
+          behavior: this.editForm.behavior
+        }
+        this.queryInfo.splice(this.userIndex, 1, succe)
+      })
+    },
+    delUser(idx) {
+      this.$confirm('确认删除？')
+        // eslint-disable-next-line no-unused-vars
+        .then(_ => {
+          this.queryInfo.splice(idx, 1)
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch(_ => {})
     }
   }
 }
