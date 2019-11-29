@@ -21,7 +21,11 @@ import {
   Row,
   Col,
   Table,
+  Popover,
   TableColumn,
+  Tooltip,
+  Pagination,
+  Dialog,
 } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -45,5 +49,9 @@ Vue.use(Card)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Table)
+Vue.use(Popover)
 Vue.use(TableColumn)
+Vue.use(Tooltip)
+Vue.use(Pagination)
+Vue.use(Dialog)
 Vue.prototype.$message = Message

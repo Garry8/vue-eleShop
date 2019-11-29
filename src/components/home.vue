@@ -9,13 +9,20 @@
     </el-header>
     <el-container>
       <!-- 左侧树 -->
-      <div class="togg" @click="toggPale">|||</div>
+      <el-tooltip
+        class="item"
+        effect="dark"
+        content="切换"
+        placement="top-start"
+      >
+        <div class="togg" @click="toggPale">|||</div>
+      </el-tooltip>
       <el-aside :width="pflag ? '65px' : '200px'">
         <el-menu
-          :default-active ='acPath'
-          background-color="#c3d2db"
-          text-color="#fff"
-          active-text-color="#82111f"
+          :default-active="acPath"
+          background-color="#EAEAEA"
+          text-color="#666"
+          active-text-color="#CD580A"
           unique-opened
           :collapse="pflag"
           :collapse-transition="false"
@@ -49,7 +56,7 @@
       </el-aside>
       <!-- 右侧可视区域 -->
       <el-main>
-          <router-view></router-view>
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -62,19 +69,18 @@ export default {
       meauList: [],
       linList: [],
       pflag: false,
-      acPath:'',
-      iconmain:{
-          '1':'iconfont icon-lianxiren',
-          '2':'iconfont icon-yingyong',
-          '3':'iconfont icon-youjian',
-          '4':'iconfont icon-caogaoxiang',
-          '5':'iconfont icon-xiaoxi',
+      acPath: '',
+      iconmain: {
+        '1': 'iconfont icon-lianxiren',
+        '2': 'iconfont icon-yingyong',
+        '3': 'iconfont icon-youjian',
+        '4': 'iconfont icon-caogaoxiang',
+        '5': 'iconfont icon-xiaoxi'
       }
     }
   },
   created() {
-    this.getMainMeau(),
-    this.acPath = window.sessionStorage.getItem('acPath')
+    this.getMainMeau(), (this.acPath = window.sessionStorage.getItem('acPath'))
   },
   beforeUpdate() {
     this.putsub()
@@ -89,7 +95,7 @@ export default {
       this.$http.get('http://localhost:8080/eleVue/linServlet').then(result => {
         if (result.status === 200) {
           this.linList = result.data
-        //   console.log(this.linList)
+          //   console.log(this.linList)
         } else {
           return this.$message.error('获取数据失败')
         }
@@ -98,7 +104,7 @@ export default {
           .then(result => {
             if (result.status === 200) {
               this.meauList = result.data
-            //   console.log(this.meauList)
+              //   console.log(this.meauList)
             } else {
               return this.$message.error('获取数据失败')
             }
@@ -114,15 +120,15 @@ export default {
       this.linList.forEach(v => {
         map[v.submid].submain.push(v)
       })
-      console.log(this.meauList)
+    //   console.log(this.meauList)
     },
     toggPale() {
       this.pflag = !this.pflag
     },
-    savePath(acPath){
-        window.sessionStorage.setItem('acPath',acPath)
-        this.acPath = acPath
-    },
+    savePath(acPath) {
+      window.sessionStorage.setItem('acPath', acPath)
+      this.acPath = acPath
+    }
   }
 }
 </script>
@@ -141,7 +147,7 @@ export default {
   letter-spacing: 2px;
 }
 .el-header {
-  background-color: rgb(145, 196, 193);
+  background-color: #554d63;
 }
 .togg {
   position: absolute;
@@ -153,7 +159,7 @@ export default {
   cursor: pointer;
 }
 .el-aside {
-  background-color: #c3d2db;
+  background-color: #EAEAEA;
   .el-menu {
     border-right: 0;
   }
@@ -161,10 +167,10 @@ export default {
 .el-main {
   background-color: #f3f3f3;
 }
-.iconfont{
-    margin:0 8px 0 2px;
+.iconfont {
+  margin: 0 8px 0 2px;
 }
-.el-submenu .el-menu-item span{
-    padding-left: 12px;
+.el-submenu .el-menu-item span {
+  padding-left: 12px;
 }
 </style>
