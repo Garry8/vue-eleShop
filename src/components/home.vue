@@ -37,7 +37,7 @@
           :default-active="acPath"
           background-color="#EAEAEA"
           text-color="#666"
-          active-text-color="#CD580A"
+          active-text-color="#059DC9"
           unique-opened
           :collapse="pflag"
           :collapse-transition="false"

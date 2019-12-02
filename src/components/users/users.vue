@@ -280,15 +280,35 @@ export default {
         this.queryInfo.splice(this.userIndex, 1, succe)
       })
     },
-    delUser(idx) {
-      this.$confirm('确认删除？')
-        // eslint-disable-next-line no-unused-vars
-        .then(_ => {
+    // delUser(idx) {   // 删除方法一
+    //   this.$confirm('确认删除？')
+    //     // eslint-disable-next-line no-unused-vars
+    //     .then(_ => {
+    //       this.queryInfo.splice(idx, 1)
+    //     })
+        
+    //     .catch(err => {
+    //         return err
+    //     })
+    // },
+    async delUser(idx) {    // 删除方法二
+         await this.$confirm('确认删除该条数据吗?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
           this.queryInfo.splice(idx, 1)
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })          
         })
-        // eslint-disable-next-line no-unused-vars
-        .catch(_ => {})
-    }
+    },
   }
 }
 </script>
