@@ -1,80 +1,88 @@
 <template>
-  <el-container class="homeCon">
-    <!-- 头部区域 -->
-    <el-header class="headerCon" height="80px">
-      <div>
-        <h2 class="tith">智能云管理平台</h2>
-      </div>
-
-    <!-- 退出按钮 -->
-      <div class="exitCls">
-        <el-button type="danger" class="exCut" @click="visible = !visible" round
-          >退出</el-button
-        >
-        <div class="showPale" v-show="visible">
-          <p>
-            确定退出吗？
-            <el-button size="mini" type="text" @click="visible = false"
-              >取消</el-button
-            >
-            <el-button type="danger" size="mini" @click="exit">确定</el-button>
-          </p>
+    <el-container class="homeCon">
+      <!-- 头部区域 -->
+      <el-header class="headerCon" height="80px">
+        <div>
+          <h2 class="tith">智能云管理平台</h2>
         </div>
-      </div>
-    </el-header>
-    <el-container>
-      <!-- 左侧树 -->
-      <el-tooltip
-        class="item"
-        effect="dark"
-        content="切换"
-        placement="top-start"
-      >
-        <div class="togg" @click="toggPale">|||</div>
-      </el-tooltip>
-      <el-aside :width="pflag ? '65px' : '200px'">
-        <el-menu
-          :default-active="acPath"
-          background-color="#EAEAEA"
-          text-color="#666"
-          active-text-color="#059DC9"
-          unique-opened
-          :collapse="pflag"
-          :collapse-transition="false"
-          router
-        >
-          <el-submenu
-            :index="item.id + ''"
-            v-for="item in meauList"
-            :key="item.id"
-          >
-            <!-- 一级菜单 -->
-            <template slot="title">
-              <i :class="iconmain[item.id]"></i>
-              <span>{{ item.title }}</span>
-            </template>
 
-            <!-- 二级菜单 -->
-            <el-menu-item
-              :index="subItem.path"
-              v-for="subItem in item.submain"
-              :key="subItem.id"
-              @click="savePath(subItem.path)"
+        <!-- 退出按钮 -->
+        <div class="exitCls">
+          <el-button
+            type="danger"
+            class="exCut"
+            @click="visible = !visible"
+            round
+            >退出</el-button
+          >
+          <transition name="userExit">
+            <div class="showPale" v-if="visible">
+              <p>
+                确定退出吗？
+                <el-button size="mini" type="text" @click="visible = false"
+                  >取消</el-button
+                >
+                <el-button type="danger" size="mini" @click="exit"
+                  >确定</el-button
+                >
+              </p>
+            </div>
+          </transition>
+        </div>
+      </el-header>
+      <el-container>
+        <!-- 左侧树 -->
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="切换"
+          placement="top-start"
+        >
+          <div class="togg" @click="toggPale">|||</div>
+        </el-tooltip>
+        <el-aside :width="pflag ? '65px' : '200px'">
+          <el-menu
+            :default-active="acPath"
+            background-color="#EAEAEA"
+            text-color="#666"
+            active-text-color="#059DC9"
+            unique-opened
+            :collapse="pflag"
+            :collapse-transition="false"
+            router
+          >
+            <el-submenu
+              :index="item.id + ''"
+              v-for="item in meauList"
+              :key="item.id"
             >
+              <!-- 一级菜单 -->
               <template slot="title">
-                <!-- <i class="el-icon-location"></i> -->
-                <span>{{ subItem.ename }}</span>
+                <i :class="iconmain[item.id]"></i>
+                <span>{{ item.title }}</span>
               </template>
-            </el-menu-item>
-          </el-submenu>
-        </el-menu>
-      </el-aside>
-      <!-- 右侧可视区域 -->
-      <el-main>
-        <router-view></router-view>
-      </el-main>
+
+              <!-- 二级菜单 -->
+              <el-menu-item
+                :index="subItem.path"
+                v-for="subItem in item.submain"
+                :key="subItem.id"
+                @click="savePath(subItem.path)"
+              >
+                <template slot="title">
+                  <!-- <i class="el-icon-location"></i> -->
+                  <span>{{ subItem.ename }}</span>
+                </template>
+              </el-menu-item>
+            </el-submenu>
+          </el-menu>
+        </el-aside>
+        <!-- 右侧可视区域 -->
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+      </el-container>
     </el-container>
-  </el-container>
 </template>
 
 <script>
@@ -211,4 +219,16 @@ export default {
     margin: 16px;
   }
 }
+//定义动画
+  .userExit-enter-active {
+    transition: all 0.2s ease;
+  }
+  .userExit-leave-active {
+    transition: all 1.2s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+  .userExit-enter, .userExit-leave-to
+  {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
 </style>
