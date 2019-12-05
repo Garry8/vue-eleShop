@@ -1,5 +1,48 @@
 <template>
   <div class="logCon" v-cloak>
+    <div class="header">
+      <div class="inner-header flex"></div>
+
+      <div>
+        <svg
+          class="waves"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 24 150 28"
+          preserveAspectRatio="none"
+          shape-rendering="auto"
+        >
+          <defs>
+            <path
+              id="gentle-wave"
+              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+            />
+          </defs>
+          <g class="parallax">
+            <use
+              xlink:href="#gentle-wave"
+              x="48"
+              y="0"
+              fill="rgba(255,255,255,0.7"
+            />
+            <use
+              xlink:href="#gentle-wave"
+              x="48"
+              y="3"
+              fill="rgba(255,255,255,0.5)"
+            />
+            <use
+              xlink:href="#gentle-wave"
+              x="48"
+              y="5"
+              fill="rgba(255,255,255,0.3)"
+            />
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+          </g>
+        </svg>
+      </div>
+    </div>
+
     <div class="testMain">
       <div class="testLeft">
         <transition appear name="pone">
@@ -59,7 +102,8 @@
               <el-form-item>
                 <el-button
                   class="rigBut"
-                  type="text"
+                  size="mini"
+                  round
                   @click="resetForm('ruleForm')"
                   >重置输入</el-button
                 >
@@ -177,7 +221,7 @@ export default {
 }
 .logCon {
   // background-color: #f1f1f1;
-  background: url("../assets/img/bgc-1.png");
+  //   background: url("../assets/img/bgc-1.png");
   height: 100%;
   width: 100%;
   box-sizing: content-box;
@@ -185,7 +229,7 @@ export default {
 
   .bgc {
     border-radius: 6px;
-    box-shadow: 2px 2px 10px #dedede;
+    box-shadow: 2px 1px 8px rgba(74, 125, 155, 0.3);
   }
 
   .usico {
@@ -196,35 +240,42 @@ export default {
   .testMain {
     width: 66%;
     display: flex;
-    margin: 0 auto;
-    padding-top: 12%;
+    padding: 2% 0;
+    position: absolute;
+    top: 16%;
+    left: 20%;
+    background-color: rgba(252, 252, 252, 0.1);
+    border-radius: 10px;
     // justify-content: space-between;
   }
 
   .testLeft {
+    padding-left: 5%;
     flex: 1;
     .pone {
       font-size: 46px;
       font-weight: 800;
       margin-bottom: 20px;
-      color: #61649f;
+      color: #fff;
     }
 
     .ptwo {
       font-size: 30px;
       font-weight: 500;
+      color: #fff;
     }
 
     .boLine {
       width: 60px;
       height: 6px;
       border-radius: 10px;
-      background-color: #333;
+      background-color: rgb(238, 238, 238);
       margin-top: 26%;
     }
   }
 
   .testRight {
+    margin-right: 2%;
     .testGet {
       width: 450px;
       margin: 20px 40px 40px 20px;
@@ -265,6 +316,86 @@ export default {
 
   .divone-enter-active {
     transition: all 1.6s ease;
+  }
+}
+
+// 参照的波浪样式
+body {
+  margin: 0;
+}
+
+.header {
+  position: relative;
+  text-align: center;
+  background: linear-gradient(
+    70deg,
+    rgba(76, 207, 247, 0.945) 0%,
+    rgb(0, 159, 180) 100%
+  );
+  color: white;
+}
+
+.inner-header {
+  height: 84vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 15vh;
+  margin-bottom: -7px;
+  min-height: 100px;
+  max-height: 150px;
+}
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .waves {
+    height: 40px;
+    min-height: 40px;
+  }
+  .content {
+    height: 30vh;
+  }
+  h1 {
+    font-size: 24px;
   }
 }
 </style>

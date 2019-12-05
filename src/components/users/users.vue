@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="userMainText">
     <!-- 面包导航区域 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
@@ -8,74 +8,82 @@
     </el-breadcrumb>
 
     <!-- 卡片视图区域 -->
-    <el-card shadow="hover">
-      <!-- 搜索区域 -->
-      <el-row :gutter="20">
-        <el-col :span="6">
-          <el-input placeholder="搜索姓名关键字" v-model="keywords" clearable>
-            <!-- <el-button
+    <!-- <el-card shadow="hover"> -->
+    <!-- 搜索区域 -->
+    <el-row :gutter="20">
+      <el-col :span="6">
+        <el-input placeholder="搜索姓名关键字" v-model="keywords" clearable>
+          <!-- <el-button
               slot="append"
               icon="el-icon-search"
               @click="search(keywords)"
             ></el-button> -->
-          </el-input>
-        </el-col>
-        <el-col :span="6">
-          <el-button type="primary" @click="dialogVisible = true"
-            >添加用户</el-button
-          >
-        </el-col>
+        </el-input>
+      </el-col>
+      <el-col :span="6">
+        <el-button type="primary" @click="dialogVisible = true"
+          >添加用户</el-button
+        >
+      </el-col>
+    </el-row>
 
-        <!-- 用户列表区域 -->
-        <div class="tablemenu">
-          <el-table :data="search(keywords)" border stripe>
-            <el-table-column label="序号" width="60">
-              <template slot-scope="scope">{{ scope.$index + 1 }}</template>
-            </el-table-column>
-            <!-- <el-table-column label="序号" type="index" width="60"></el-table-column> -->
-            <el-table-column label="用户名" prop="name"></el-table-column>
-            <el-table-column label="电话" prop="phone"></el-table-column>
-            <el-table-column label="邮箱" prop="email"></el-table-column>
-            <el-table-column label="角色" prop="behavior"></el-table-column>
-            <el-table-column label="操作" prop="linadd">
-              <template slot-scope="scope">
-                <el-tooltip
-                  effect="dark"
-                  content="编辑"
-                  placement="top"
-                  :enterable="false"
-                >
-                  <el-button
-                    size="mini"
-                    type="primary"
-                    icon="el-icon-edit"
-                    circlefalse
-                    @click="showEditdia(scope.row, scope.$index)"
-                  ></el-button>
-                </el-tooltip>
+    <!-- 用户列表区域 -->
+    <div class="tablemenu">
+      <el-card class="cardMain" shadow="hover">
+        <el-table
+          height="100%"
+          :data="search(keywords)"
+          :row-class-name="tabRowClassName"
+          :cell-style="rowClass"
+          :header-cell-style="headClass"
+        >
+          <!-- :header-cell-style="{ background: '#eef1f6', color: '#606266' }" -->
+          <el-table-column label="序号" width="60">
+            <template slot-scope="scope">{{ scope.$index + 1 }}</template>
+          </el-table-column>
+          <!-- <el-table-column label="序号" type="index" width="60"></el-table-column> -->
+          <el-table-column label="用户名" prop="name"></el-table-column>
+          <el-table-column label="电话" prop="phone"></el-table-column>
+          <el-table-column label="邮箱" prop="email"></el-table-column>
+          <el-table-column label="角色" prop="behavior"></el-table-column>
+          <el-table-column colspan="2" label="操作" prop="linadd">
+            <template slot-scope="scope">
+              <el-tooltip
+                effect="dark"
+                content="编辑"
+                placement="top"
+                :enterable="false"
+              >
+                <el-button
+                  size="mini"
+                  type="primary"
+                  icon="el-icon-edit"
+                  circlefalse
+                  @click="showEditdia(scope.row, scope.$index)"
+                ></el-button>
+              </el-tooltip>
 
-                <el-tooltip
-                  effect="dark"
-                  content="删除"
-                  placement="top"
-                  :enterable="false"
-                >
-                  <el-button
-                    size="mini"
-                    icon="el-icon-delete"
-                    circle
-                    type="danger"
-                    @click="delUser(scope.$index)"
-                  ></el-button>
-                </el-tooltip>
-              </template>
-            </el-table-column>
-          </el-table>
-        </div>
+              <el-tooltip
+                effect="dark"
+                content="删除"
+                placement="top"
+                :enterable="false"
+              >
+                <el-button
+                  size="mini"
+                  icon="el-icon-delete"
+                  circle
+                  type="danger"
+                  @click="delUser(scope.$index)"
+                ></el-button>
+              </el-tooltip>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-card>
+    </div>
 
-        <!-- 分页区域 -->
-      </el-row>
-    </el-card>
+    <!-- </el-card> -->
 
     <!-- 添加用户的弹出框 -->
     <el-dialog
@@ -286,35 +294,72 @@ export default {
     //     .then(_ => {
     //       this.queryInfo.splice(idx, 1)
     //     })
-        
+
     //     .catch(err => {
     //         return err
     //     })
     // },
-    async delUser(idx) {    // 删除方法二
-         await this.$confirm('确认删除该条数据吗?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
+    async delUser(idx) {
+      // 删除方法二
+      await this.$confirm('确认删除该条数据吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
           this.queryInfo.splice(idx, 1)
           this.$message({
             type: 'success',
             message: '删除成功!'
           })
-        }).catch(() => {
+        })
+        .catch(() => {
           this.$message({
             type: 'info',
             message: '已取消删除'
-          })          
+          })
         })
     },
+    // 表头样式设置
+    headClass() {
+      return 'text-align: center;background:#eef1f6;'
+    },
+    // 表格样式设置
+    rowClass() {
+      return 'text-align: center;'
+    },
+    // 更改斑马纹颜色
+    // eslint-disable-next-line no-unused-vars
+    tabRowClassName({ row, rowIndex }) {
+      if (rowIndex % 2 !== 1) {
+        return 'warning-row'
+      }
+      return ''
+    }
   }
 }
 </script>
 
-<style lang="less" scoped>
-.tablemenu {
-  margin-top: 52px;
+<style lang="less">
+.userMainText {
+  height: calc(100vh - 120px);
+  overflow: hidden;
+
+  .tablemenu {
+    margin-top: 10px;
+    height: 90%;
+  }
+
+  // 修改表格隔行变色
+  .el-table .warning-row {
+    background: rgb(245, 255, 254);
+  }
+
+  // 修改表格hover颜色
+  .el-table--enable-row-hover .el-table__body tr:hover > td {
+    background-color: #eaf3f8;
+  }
+
+  
 }
 </style>

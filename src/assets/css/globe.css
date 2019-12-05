@@ -32,3 +32,37 @@ h4 {
   /* box-shadow: 0 1px 2px #DEDEDE; */
 }
 
+/* 定义表头末尾的空格样式 */
+.tablemenu .el-table__header-wrapper{
+    background-color: #eef1f6;
+}
+ 
+
+/* 定义滚动条的样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #fff;
+}
+::-webkit-scrollbar-thumb {
+  border-radius:5px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 用户列表页面的表格高度 */
+.tablemenu .el-card__body{
+    height: 92%;
+}
+.tablemenu .cardMain{
+    height: 100%;
+}
+.tablemenu .el-card{
+    height: 100%;
+}
+
+/* 更改左侧导航菜单栏的hover属性 */
+.el-submenu__title:hover{
+    background-color: rgba(159, 143, 202, 0.32) !important;
+}
+.el-menu-item:hover{
+    background-color: rgba(159, 143, 202, 0.32) !important;
+}

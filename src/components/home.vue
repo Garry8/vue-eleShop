@@ -78,7 +78,7 @@
           </el-menu>
         </el-aside>
         <!-- 右侧可视区域 -->
-        <el-main>
+        <el-main class="rigMain">
           <router-view></router-view>
         </el-main>
       </el-container>
@@ -160,6 +160,7 @@ export default {
 <style lang="less" scoped>
 .homeCon {
   height: 100%;
+  overflow: hidden;
 }
 .headerCon {
   display: flex;
@@ -207,7 +208,7 @@ export default {
 }
 .showPale {
   background-color: #fff;
-  width: 220px;
+  width: 230px;
   position: absolute;
   right: 120px;
   top: 10px;
