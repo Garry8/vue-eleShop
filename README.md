@@ -2,12 +2,22 @@
 
 
 ## 注意事项
-  -- 首页数据请求的是自己用java写的servlet, 仅部署在Tomcat的服务器中提供本地运行
-  -- 功能模块仅上开发用户列表模块,其他类似表格的增删改查没有Ctrl C/V,
-  -- 很多小的特效与细节是自己结合svg和Element UI的空间写的
-  -- 有很多的处理细节上面的问题还没有精确,希望多多交流 374792302@qq.com
+  ### 首页数据请求的是自己用java写的servlet, 仅部署在Tomcat的服务器中提供本地运行
+  ### 功能模块仅上开发用户列表模块,其他类似表格的增删改查没有Ctrl C/V,
+  ### 很多小的特效与细节是自己结合svg和Element UI的空间写的
+  ### 有很多的处理细节上面的问题还没有精确,希望多多交流 374792302@qq.com
 
+登录
+![](https://github.com/Garry8/vue-shop/blob/master/src/images/loginl.gif)
 
+首页
+![](https://github.com/Garry8/vue-shop/blob/master/src/images/homel.gif)
+
+用户列表
+![](https://github.com/Garry8/vue-shop/blob/master/src/images/homet.gif)
+
+操作
+![](https://github.com/Garry8/vue-shop/blob/master/src/images/editl.gif)
 
 
 
