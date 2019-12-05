@@ -8,16 +8,16 @@
   ### 有很多的处理细节上面的问题还没有精确,希望多多交流 374792302@qq.com
 
 登录
-![](https://github.com/Garry8/vue-shop/blob/master/src/images/loginl.gif)
+![](https://github.com/Garry8/vue-eleShop/blob/master/src/assets/img/loginl.gif)
 
 首页
-![](https://github.com/Garry8/vue-shop/blob/master/src/images/homel.gif)
+![](https://github.com/Garry8/vue-eleShop/blob/master/src/assets/img/homel.gif)
 
 用户列表
-![](https://github.com/Garry8/vue-shop/blob/master/src/images/homet.gif)
+![](https://github.com/Garry8/vue-eleShop/blob/master/src/assets/img/homet.gif)
 
 操作
-![](https://github.com/Garry8/vue-shop/blob/master/src/images/editl.gif)
+![](https://github.com/Garry8/vue-eleShop/blob/master/src/assets/img/editl.gif)
 
 
 
